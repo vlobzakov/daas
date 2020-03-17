@@ -51,6 +51,6 @@ actions:
       wget http://cdn.azul.com/zmc/bin/zmc7.1.0.69-ca-linux_x64.tar.gz;
       tar -xzvf zmc7.1.0.69-ca-linux_x64.tar.gz;
     
-success: noMachine connection string **${env.domain}:4000**. Username=**jvm** and password=**${globals.daas_pass}**
+success: Open 4000 port with Endpoints and use mapped port in noMachine connection string **${env.domain}:<mappedPort>**. Username=**jvm** and password=**${globals.daas_pass}**
 
   
