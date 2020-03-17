@@ -1,0 +1,58 @@
+version: '1.5'
+appVersion: latest
+type: install
+id: zmcdaas
+name: Zulu Mission Control DaaS
+
+description: 
+  text: ZMC UI in the Cloud Desktop
+  short: Zulu Mission Control
+
+globals:
+  daas_pass: ${fn.password(8)}
+
+nodes:
+  nodeType: javaengine
+  tag: zulujdk-11.0.5
+  cloudlets: 16
+  count: 1
+  env:
+    JELASTIC_EXPOSE: 4000
+
+onInstall:
+  - x11install
+  - restartNodes:
+    nodeGroup: [cp]
+  - daasinstall
+  - firefoxinstall
+  - zmcinstall
+
+actions:
+  x11install:
+    cmd[cp]:
+      yum groupinstall "X Window System";
+      yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts;
+      unlink /etc/systemd/system/default.target;
+      ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target;
+      echo "jvm:${globals.daas_pass} | chpasswd";
+    user: root
+
+  daasinstall:
+    cmd[cp]:
+      wget https://download.nomachine.com/download/6.9/Linux/nomachine_6.9.2_1_x86_64.rpm;
+      rpm -i nomachine_6.9.2_1_x86_64.rpm; 
+    user: root
+      
+  firefoxinstall:
+    cmd[cp]:
+      yum install -y firefox;
+    user: root
+
+  zmcinstall:
+    cmd[cp]:
+      cd /home/jelastic;
+      wget http://cdn.azul.com/zmc/bin/zmc7.1.0.69-ca-linux_x64.tar.gz;
+      tar -xzvf zmc7.1.0.69-ca-linux_x64.tar.gz;
+      7.1.0.69-ca-linux_x64/zmc &
+
+success: noMachine connection string **${env.domain}:4000**. Username=**jvm** and password=**${daas_pass}**
