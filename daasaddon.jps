@@ -1,0 +1,43 @@
+version: '1.5'
+appVersion: latest
+type: update
+id: zmcdaas
+name: DaaS Add-On
+
+description: 
+  text: Install Add-On on any node in order to create Cloud Desktop with Gnome Display Manager.
+  short: Use Desktop-as-a-Service to run cloud Applications interactively.
+
+globals:
+  daas_pass: ${fn.password(8)}
+
+onInstall:
+  - x11install
+  - restartNodes:
+      nodeGroup: [cp]
+  - daasinstall
+  - firefoxinstall
+  - zmcinstall
+
+actions:
+  x11install:
+    cmd[cp]:
+      yum groupinstall "X Window System";
+      yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts;
+      unlink /etc/systemd/system/default.target;
+      ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target;
+      echo "jvm:${globals.daas_pass}" | chpasswd;
+    user: root
+  daasinstall:
+    cmd[cp]:
+      wget https://download.nomachine.com/download/6.9/Linux/nomachine_6.9.2_1_x86_64.rpm;
+      rpm -i nomachine_6.9.2_1_x86_64.rpm; 
+    user: root
+  firefoxinstall:
+    cmd[cp]:
+      yum install -y firefox
+    user: root
+    
+success: Open 4000 port with Endpoints and use mapped port in noMachine connection string **${env.domain}:<mappedPort>**. Username=**jvm** and password=**${globals.daas_pass}**
+
+  
