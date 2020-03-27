@@ -26,7 +26,7 @@ actions:
       yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts;
       unlink /etc/systemd/system/default.target;
       ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target;
-      echo "jvm:${globals.daas_pass}" | chpasswd;
+      echo "apache:${globals.daas_pass}" | chpasswd;
     user: root
   daasinstall:
     cmd[cp]:
