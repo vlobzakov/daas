@@ -16,8 +16,6 @@ nodes:
   tag: zulujdk-11.0.5
   cloudlets: 16
   count: 1
-  env:
-    JELASTIC_EXPOSE: 4000
 
 onInstall:
   - x11install
