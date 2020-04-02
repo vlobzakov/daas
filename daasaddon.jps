@@ -1,8 +1,16 @@
 version: '1.5'
 appVersion: latest
 type: update
-id: zmcdaas
+id: daas
 name: DaaS Add-On
+logo: http://github.com/vlobzakov/daas/blob/master/images/daas-logo-small.png
+targetNodes:
+  nodeGroup: 
+    - vds
+    - cp
+    - nosqldb
+    - sqldb
+    - bl
 
 description: 
   text: Install Add-On on any node in order to create Cloud Desktop with Gnome Display Manager.
@@ -10,33 +18,43 @@ description:
 
 globals:
   daas_pass: ${fn.password(8)}
+  noMachine_PORT: 4000
+  nodeId: ${targetNodes.master.id}
 
 onInstall:
-  - x11install
-  - restartNodes:
-      nodeGroup: [cp]
-  - daasinstall
-  - firefoxinstall
+  - UserDetermination
+  - XinstallAction
+  - EndpointAddAction
 
 actions:
-  x11install:
-    cmd[cp]:
-      yum groupinstall "X Window System";
-      yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts;
-      unlink /etc/systemd/system/default.target;
-      ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target;
-      echo "apache:${globals.daas_pass}" | chpasswd;
-    user: root
-  daasinstall:
-    cmd[cp]:
-      wget https://download.nomachine.com/download/6.9/Linux/nomachine_6.9.2_1_x86_64.rpm;
-      rpm -i nomachine_6.9.2_1_x86_64.rpm; 
-    user: root
-  firefoxinstall:
-    cmd[cp]:
-      yum install -y firefox
-    user: root
-    
-success: Open 4000 port with Endpoints and use mapped port in noMachine connection string **${env.domain}:<mappedPort>**. Username=**jvm** and password=**${globals.daas_pass}**
+  UserDetermination:
+      - api : env.control.ExecCmdById
+        nodeId: ${globals.nodeId}
+        commandList : [{
+              "command": "whoami"
+                     }]
+      - setGlobals:  
+          userOut: ${response.out}
 
-  
+  XinstallAction:
+    - cmd [${globals.nodeId}]: |-
+        yum groupinstall "X Window System" --skip-broken;
+        yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts --skip-broken;
+        unlink /etc/systemd/system/default.target;
+        ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target;
+        echo "${globals.userOut}:${globals.daas_pass}" | chpasswd;
+        wget https://download.nomachine.com/download/6.9/Linux/nomachine_6.9.2_1_x86_64.rpm;
+        rpm -i nomachine_6.9.2_1_x86_64.rpm; 
+        yum install -y firefox
+      user: root
+
+  EndpointAddAction:
+    - api : env.control.AddEndpoint
+      nodeId: ${globals.nodeId}
+      privatePort: ${globals.noMachine_PORT}
+      protocol: TCP
+      name: noMachine
+    - setGlobals:  
+        publicPort: ${response.object.publicPort}
+    
+success: Cloud desktop has been attached to your environment. Use mapped port instead of 4000 in noMachine connection string **node${globals.nodeId}-${env.domain}:${globals.publicPort}**. Username=**${globals.userOut}** and password=**${globals.daas_pass}**.
