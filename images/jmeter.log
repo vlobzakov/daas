@@ -1,0 +1,104 @@
+2020-04-02 15:33:45,605 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2020-04-02 15:33:45,640 INFO o.a.j.JMeter: Loading user properties from: /home/lwo/jmeter/apache-jmeter-5.2.1/bin/user.properties
+2020-04-02 15:33:45,640 INFO o.a.j.JMeter: Loading system properties from: /home/lwo/jmeter/apache-jmeter-5.2.1/bin/system.properties
+2020-04-02 15:33:45,642 INFO o.a.j.JMeter: Copyright (c) 1998-2019 The Apache Software Foundation
+2020-04-02 15:33:45,642 INFO o.a.j.JMeter: Version 5.2.1
+2020-04-02 15:33:45,642 INFO o.a.j.JMeter: java.version=10.0.2
+2020-04-02 15:33:45,642 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2020-04-02 15:33:45,642 INFO o.a.j.JMeter: os.name=Linux
+2020-04-02 15:33:45,643 INFO o.a.j.JMeter: os.arch=amd64
+2020-04-02 15:33:45,643 INFO o.a.j.JMeter: os.version=4.15.0-91-generic
+2020-04-02 15:33:45,643 INFO o.a.j.JMeter: file.encoding=UTF-8
+2020-04-02 15:33:45,643 INFO o.a.j.JMeter: java.awt.headless=null
+2020-04-02 15:33:45,643 INFO o.a.j.JMeter: Max memory     =1073741824
+2020-04-02 15:33:45,643 INFO o.a.j.JMeter: Available Processors =4
+2020-04-02 15:33:45,654 INFO o.a.j.JMeter: Default Locale=English (EN)
+2020-04-02 15:33:45,654 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2020-04-02 15:33:45,655 INFO o.a.j.JMeter: JMeterHome=/home/lwo/jmeter/apache-jmeter-5.2.1
+2020-04-02 15:33:45,655 INFO o.a.j.JMeter: user.dir  =/home/lwo/Documents/github/daas/images
+2020-04-02 15:33:45,655 INFO o.a.j.JMeter: PWD       =/home/lwo/Documents/github/daas/images
+2020-04-02 15:33:45,655 INFO o.a.j.JMeter: IP: 127.0.1.1 Name: lwo-asus FullName: lwo-asus
+2020-04-02 15:33:46,402 INFO o.a.j.g.a.LookAndFeelCommand: Installing Darcula LAF
+2020-04-02 15:33:46,428 INFO o.a.j.g.a.LookAndFeelCommand: Using look and feel: com.bulenkov.darcula.DarculaLaf [Darcula]
+2020-04-02 15:33:46,428 INFO o.a.j.JMeter: Setting LAF to: com.bulenkov.darcula.DarculaLaf
+2020-04-02 15:33:46,508 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2020-04-02 15:33:47,234 WARN o.j.r.PluginManager: Found JAR conflict: /home/lwo/jmeter/apache-jmeter-5.2.1/lib/jmeter-plugins-cmn-jmeter-0.5.jar and /home/lwo/jmeter/apache-jmeter-5.2.1/lib/jmeter-plugins-cmn-jmeter-0.4.jar
+2020-04-02 15:33:47,238 WARN o.j.r.PluginManager: Found JAR conflict: /home/lwo/jmeter/apache-jmeter-5.2.1/lib/ext/jmeter-plugins-manager-1.1.jar and /home/lwo/jmeter/apache-jmeter-5.2.1/lib/ext/jmeter-plugins-manager-0.20.jar
+2020-04-02 15:33:47,238 WARN o.j.r.PluginManager: Found JAR conflict: /home/lwo/jmeter/apache-jmeter-5.2.1/lib/ext/jmeter-plugins-manager-1.3.jar and /home/lwo/jmeter/apache-jmeter-5.2.1/lib/ext/jmeter-plugins-manager-1.1.jar
+2020-04-02 15:33:47,988 WARN o.j.r.PluginManagerMenuItem: Failed to load plugin updates info
+javax.net.ssl.SSLException: java.lang.RuntimeException: Unexpected error: java.security.InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:214) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1974) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1926) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.handleException(SSLSocketImpl.java:1909) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1436) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1413) ~[?:?]
+	at org.apache.http.conn.ssl.SSLSocketFactory.createLayeredSocket(SSLSocketFactory.java:570) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:554) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:415) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:326) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:605) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:440) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:835) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56) ~[httpclient-4.5.10.jar:4.5.10]
+	at org.jmeterplugins.repository.JARSourceHTTP.execute(JARSourceHTTP.java:378) ~[jmeter-plugins-manager-0.20.jar:?]
+	at org.jmeterplugins.repository.JARSourceHTTP.execute(JARSourceHTTP.java:373) ~[jmeter-plugins-manager-0.20.jar:?]
+	at org.jmeterplugins.repository.JARSourceHTTP.getJSON(JARSourceHTTP.java:121) ~[jmeter-plugins-manager-0.20.jar:?]
+	at org.jmeterplugins.repository.JARSourceHTTP.getRepositories(JARSourceHTTP.java:172) ~[jmeter-plugins-manager-0.20.jar:?]
+	at org.jmeterplugins.repository.JARSourceHTTP.getRepo(JARSourceHTTP.java:199) ~[jmeter-plugins-manager-0.20.jar:?]
+	at org.jmeterplugins.repository.PluginManager.load(PluginManager.java:69) ~[jmeter-plugins-manager-0.20.jar:?]
+	at org.jmeterplugins.repository.PluginManagerMenuItem$1.run(PluginManagerMenuItem.java:41) [jmeter-plugins-manager-0.20.jar:?]
+Caused by: java.lang.RuntimeException: Unexpected error: java.security.InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty
+	at sun.security.validator.PKIXValidator.<init>(PKIXValidator.java:89) ~[?:?]
+	at sun.security.validator.Validator.getInstance(Validator.java:181) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.getValidator(X509TrustManagerImpl.java:330) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.checkTrustedInit(X509TrustManagerImpl.java:180) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:192) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:133) ~[?:?]
+	at sun.security.ssl.ClientHandshaker.checkServerCerts(ClientHandshaker.java:1947) ~[?:?]
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1777) ~[?:?]
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:264) ~[?:?]
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:1098) ~[?:?]
+	at sun.security.ssl.Handshaker.processRecord(Handshaker.java:1026) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.processInputRecord(SSLSocketImpl.java:1137) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1074) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:973) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1402) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1429) ~[?:?]
+	... 18 more
+Caused by: java.security.InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty
+	at java.security.cert.PKIXParameters.setTrustAnchors(PKIXParameters.java:200) ~[?:?]
+	at java.security.cert.PKIXParameters.<init>(PKIXParameters.java:120) ~[?:?]
+	at java.security.cert.PKIXBuilderParameters.<init>(PKIXBuilderParameters.java:104) ~[?:?]
+	at sun.security.validator.PKIXValidator.<init>(PKIXValidator.java:86) ~[?:?]
+	at sun.security.validator.Validator.getInstance(Validator.java:181) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.getValidator(X509TrustManagerImpl.java:330) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.checkTrustedInit(X509TrustManagerImpl.java:180) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:192) ~[?:?]
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:133) ~[?:?]
+	at sun.security.ssl.ClientHandshaker.checkServerCerts(ClientHandshaker.java:1947) ~[?:?]
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1777) ~[?:?]
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:264) ~[?:?]
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:1098) ~[?:?]
+	at sun.security.ssl.Handshaker.processRecord(Handshaker.java:1026) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.processInputRecord(SSLSocketImpl.java:1137) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1074) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:973) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1402) ~[?:?]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1429) ~[?:?]
+	... 18 more
+2020-04-02 15:33:49,451 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-02 15:33:49,452 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-02 15:33:49,452 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-02 15:33:49,452 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-02 15:33:49,452 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2020-04-02 15:33:49,453 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2020-04-02 15:33:49,766 INFO o.a.j.e.KeyToolUtils: keytool found at 'keytool'
+2020-04-02 15:33:49,766 INFO o.a.j.p.h.p.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file /home/lwo/jmeter/apache-jmeter-5.2.1/bin/proxyserver.jks
+2020-04-02 15:33:49,936 INFO o.a.j.s.FileServer: Default base='/home/lwo/Documents/github/daas/images'
+2020-04-02 15:33:50,252 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2020-04-02 15:33:50,252 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2020-04-02 15:33:50,253 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2020-04-02 15:33:50,253 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000

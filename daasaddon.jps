@@ -2,7 +2,7 @@ type: update
 version: 1.5
 id: daas
 name: DaaS Add-On
-logo: http://github.com/vlobzakov/daas/blob/master/images/daas-logo-small.png
+logo: http://github.com/vlobzakov/daas/blob/master/images/daas-logo-nomachine-small.png
 targetNodes:
   nodeGroup: 
     - vds
