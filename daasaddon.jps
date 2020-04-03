@@ -13,7 +13,7 @@ targetNodes:
     - bl
 
 description: 
-  text: Install Add-On on any node in order to create Cloud Desktop with Gnome Display Manager.
+  text: Install Add-On on any node in order to create Cloud Desktop with Gnome Display Manager and access it via [NoMachine technology](https://www.nomachine.com/).
   short: Use Desktop-as-a-Service to run cloud Applications interactively.
 
 globals:
