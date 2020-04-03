@@ -1,12 +1,11 @@
-version: '1.5'
-appVersion: latest
 type: install
 id: zmcdaas
+version: 1.5
 name: Zulu Mission Control DaaS
 
 description: 
-  text: ZMC UI in the Cloud Desktop
-  short: Zulu Mission Control
+  text: Zulu Mission Control and Flight Recorder technology deliver low-overhead, interactive open source monitoring and management capabilities for Java workloads.
+  short: Zulu Mission Control for Java workloads.
 
 globals:
   daas_pass: ${fn.password(8)}
@@ -21,12 +20,12 @@ onInstall:
   - x11install
   - restartNodes:
       nodeGroup: [cp]
-  - daasinstall
-  - firefoxinstall
-  - zmcinstall
+  - daasInstall
+  - firefoxInstall
+  - zmcInstall
 
 actions:
-  x11install:
+  x11Install:
     cmd[cp]:
       yum groupinstall "X Window System";
       yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts;
@@ -34,21 +33,19 @@ actions:
       ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target;
       echo "jvm:${globals.daas_pass}" | chpasswd;
     user: root
-  daasinstall:
+  daasInstall:
     cmd[cp]:
       wget https://download.nomachine.com/download/6.9/Linux/nomachine_6.9.2_1_x86_64.rpm;
       rpm -i nomachine_6.9.2_1_x86_64.rpm; 
     user: root
-  firefoxinstall:
+  firefoxInstall:
     cmd[cp]:
       yum install -y firefox
     user: root
-  zmcinstall:
+  zmcInstall:
     cmd[cp]:
       cd /home/jelastic;
       wget http://cdn.azul.com/zmc/bin/zmc7.1.0.69-ca-linux_x64.tar.gz;
       tar -xzvf zmc7.1.0.69-ca-linux_x64.tar.gz;
     
 success: Open 4000 port with Endpoints and use mapped port in noMachine connection string **${env.domain}:<mappedPort>**. Username=**jvm** and password=**${globals.daas_pass}**
-
-  
