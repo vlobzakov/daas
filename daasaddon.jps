@@ -1,19 +1,20 @@
 type: update
-version: 1.5
+version: '1.7'
 id: daas
 name: DaaS Add-On
-logo: http://github.com/vlobzakov/daas/blob/master/images/daas-logo-nomachine-small.png
+logo: http://github.com/jelastic-jps/daas/blob/master/images/daas-logo-nomachine-small.png
 
 targetNodes:
-  nodeGroup: 
+  nodeType: 
+    - javaengine,tomcat,tomee-dockerized,glassfish,glassfish4,jetty,jetty6,jetty8,wildfly,springboot
     - vds
     - storage
-    - java
+    - golang
     - dotnet
 
 description: 
-  text: Install Add-On on any node in order to attach Cloud Desktop to your container and access it via [NoMachine technology](https://www.nomachine.com/).
-  short: Use Desktop-as-a-Service to run cloud Applications interactively.
+  text: Install Add-On on any node in order to create Cloud Desktop with Gnome Display Manager and access it via [NoMachine technology](https://www.nomachine.com/)
+  short: Use DaaS Add-On to run your workspace in the Cloud 
 
 globals:
   daas_pass: ${fn.password(8)}
@@ -26,7 +27,7 @@ onInstall:
   - endpointAddAction
 
 actions:
-  userDetermination:
+  UserDetermination:
       - api : env.control.ExecCmdById
         nodeId: ${globals.nodeId}
         commandList : [{
@@ -35,19 +36,20 @@ actions:
       - setGlobals:  
           userOut: ${response.out}
 
-  xInstallAction:
-    - cmd [${globals.nodeId}]: |-
-        yum groupinstall "X Window System" --skip-broken;
-        yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts --skip-broken;
+  XinstallAction:
+    - cmd [${globals.nodeId}]:
+        yum groupinstall -y "X Window System" “Fonts”;
+        yum install -y gnome-classic-session gnome-terminal nautilus-open-terminal control-center;
         unlink /etc/systemd/system/default.target;
         ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target;
         echo "${globals.userOut}:${globals.daas_pass}" | chpasswd;
         wget https://download.nomachine.com/download/6.9/Linux/nomachine_6.9.2_1_x86_64.rpm;
         rpm -i nomachine_6.9.2_1_x86_64.rpm; 
-        yum install -y firefox
+        yum install -y firefox;
+        sed -i "\$a${globals.userOut}\ ALL=NOPASSWD\:\ ALL" /etc/sudoers
       user: root
 
-  endpointAddAction:
+  EndpointAddAction:
     - api : env.control.AddEndpoint
       nodeId: ${globals.nodeId}
       privatePort: ${globals.noMachine_PORT}
@@ -56,4 +58,4 @@ actions:
     - setGlobals:  
         publicPort: ${response.object.publicPort}
     
-success: Cloud desktop has been attached to your environment. Use mapped port instead of 4000 in noMachine connection string **node${globals.nodeId}-${env.domain}:${globals.publicPort}**. Username=**${globals.userOut}** and password=**${globals.daas_pass}**.
+success: Cloud desktop has been attached to your environment. Use mapped port instead of 4000 in noMachine connection string **node${globals.nodeId}-${env.domain}:${globals.publicPort}**, username=**${globals.userOut}** and password=**${globals.daas_pass}**.
