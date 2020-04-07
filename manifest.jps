@@ -1,7 +1,7 @@
 type: install
-id: zmcdaas
-version: 1.5
-name: Zulu Mission Control DaaS
+id: daas
+version: 1.7
+name: Desktop-as-a-Service
 
 description: 
   text: Zulu Mission Control and Flight Recorder technology deliver low-overhead, interactive open source monitoring and management capabilities for Java workloads.
