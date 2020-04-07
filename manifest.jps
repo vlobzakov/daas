@@ -17,7 +17,7 @@ nodes:
   count: 1
 
 onInstall:
-  - x11install
+  - x11Install
   - restartNodes:
       nodeGroup: [cp]
   - daasInstall
