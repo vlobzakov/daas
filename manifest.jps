@@ -15,9 +15,10 @@ nodes:
   tag: zulujdk-11.0.5
   cloudlets: 16
   count: 1
+  startService: false
 
 onInstall:
-  - x11install
+  - x11Install
   - restartNodes:
       nodeGroup: [cp]
   - daasInstall
