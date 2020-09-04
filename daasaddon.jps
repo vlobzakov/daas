@@ -6,7 +6,7 @@ logo: http://raw.githubusercontent.com/vlobzakov/basic-examples/master/daas-addo
 
 targetNodes:
   nodeType: 
-    - javaengine,tomcat,glassfish,wildfly,springboot
+    - javaengine,tomcat,glassfish,wildfly,springboot,nodejs
     - vds
     - storage
 
